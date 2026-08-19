@@ -105,6 +105,52 @@ export const InsuranceHmoPage = () => {
             ))}
           </div>
 
+          {/* HMO Plan Tier Benefit Comparison Table */}
+          <div className="card glass-card-glow" style={{ padding: '2rem', marginBottom: '3rem' }}>
+            <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <ShieldCheck size={22} style={{ color: 'var(--accent-teal)' }} /> HMO Coverage Tier Comparison Matrix
+            </h3>
+
+            <div className="table-responsive">
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem', textAlign: 'left', minWidth: '600px' }}>
+                <thead>
+                  <tr style={{ backgroundColor: 'var(--bg-light)', borderBottom: '2px solid var(--border-light)' }}>
+                    <th style={{ padding: '0.85rem 1rem', color: 'var(--primary-navy)' }}>Healthcare Benefit</th>
+                    <th style={{ padding: '0.85rem 1rem', color: 'var(--accent-teal)', textAlign: 'center' }}>Primary HMO Plan</th>
+                    <th style={{ padding: '0.85rem 1rem', color: 'var(--accent-cyan)', textAlign: 'center' }}>Gold HMO Plan</th>
+                    <th style={{ padding: '0.85rem 1rem', color: '#8b5cf6', textAlign: 'center' }}>Corporate Executive</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 600 }}>GP & Specialist Consultations</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'center', color: '#047857' }}>✓ 100% Covered</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'center', color: '#047857' }}>✓ 100% Covered</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'center', color: '#047857' }}>✓ Priority VIP Triage</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 600 }}>Routine Laboratory Diagnostics</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'center', color: '#047857' }}>✓ Standard Panel</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'center', color: '#047857' }}>✓ Full Chemistry</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'center', color: '#047857' }}>✓ Full + 3D Scans</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid var(--border-light)' }}>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 600 }}>Antenatal Care & Delivery</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'center', color: '#047857' }}>✓ Normal Delivery</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'center', color: '#047857' }}>✓ Normal + C-Section</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'center', color: '#047857' }}>✓ Private Suite Delivery</td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: '0.85rem 1rem', fontWeight: 600 }}>24/7 Emergency ER Triage</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'center', color: '#047857' }}>✓ Covered</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'center', color: '#047857' }}>✓ Covered + Ambulance</td>
+                    <td style={{ padding: '0.85rem 1rem', textAlign: 'center', color: '#047857' }}>✓ Rapid ICU Transfer</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
           {/* HMO Clearance Process Info */}
           <div className="card glass-card-glow" style={{ padding: '2.5rem' }}>
             <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -139,3 +185,4 @@ export const InsuranceHmoPage = () => {
     </div>
   );
 };
+

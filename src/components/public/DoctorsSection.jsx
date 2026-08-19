@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { Clock, Calendar, User, Award, ArrowRight } from 'lucide-react';
+import { Clock, Calendar, User, Search } from 'lucide-react';
 
 export const DoctorsSection = () => {
   const { doctors } = useApp();
   const navigate = useNavigate();
   const [selectedDept, setSelectedDept] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const departments = ['All', 'General Medicine', 'Obstetrics & Gynaecology', 'Paediatrics', 'Surgery'];
 
-  const filteredDoctors = selectedDept === 'All'
-    ? doctors
-    : doctors.filter((doc) => doc.department === selectedDept);
+  const filteredDoctors = doctors.filter((doc) => {
+    const matchesDept = selectedDept === 'All' || doc.department === selectedDept;
+    const matchesQuery = doc.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         doc.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         doc.department.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesDept && matchesQuery;
+  });
 
   const bookDoctor = (doctor) => navigate('/appointment', { state: { doctor: doctor.name } });
 
@@ -26,8 +31,20 @@ export const DoctorsSection = () => {
             Our medical board comprises compassionate consultants, surgeons, and healthcare specialists dedicated to your family.
           </p>
 
-          {/* Department Category Filters */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', flexWrap: 'wrap', marginTop: '1.75rem' }}>
+          {/* Live Search & Department Category Filters */}
+          <div style={{ maxWidth: '480px', margin: '1.5rem auto 1.25rem auto', position: 'relative' }}>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search specialist by doctor name, title, or department..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              style={{ paddingLeft: '2.5rem', borderRadius: 'var(--radius-full)' }}
+            />
+            <Search size={18} style={{ position: 'absolute', left: '14px', top: '13px', color: 'var(--text-light)' }} />
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
             {departments.map((dept) => (
               <button
                 key={dept}
@@ -40,6 +57,7 @@ export const DoctorsSection = () => {
             ))}
           </div>
         </div>
+
 
         <div className="grid-4">
           {filteredDoctors.map((doc) => (

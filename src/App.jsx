@@ -46,9 +46,10 @@ const MainLayout = () => {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#f8fafc' }}>
         <CmsHeader />
-        <div className="cms-shell" style={{ display: 'flex', flexGrow: 1, minHeight: 'calc(100vh - 68px)' }}>
+        <div className="cms-shell">
           <CmsSidebar />
-          <main style={{ flexGrow: 1, overflowY: 'auto' }}>
+          <main className="cms-main-content">
+
             {cmsTab === 'dashboard' && <CmsDashboard />}
             {cmsTab === 'news' && <CmsNews />}
             {cmsTab === 'appointments' && <CmsAppointments />}

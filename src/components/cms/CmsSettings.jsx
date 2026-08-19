@@ -32,8 +32,9 @@ export const CmsSettings = () => {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div className="cms-page-container">
       <div style={{ marginBottom: '2rem' }}>
+
         <h2 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--primary-navy)' }}>
           CMS System Settings & Tools
         </h2>

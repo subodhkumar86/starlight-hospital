@@ -274,10 +274,13 @@ export const Navbar = () => {
         }
         @media (max-width: 480px) {
           .nav-tagline { display: none !important; }
-          .btn-apt-text { font-size: 0.8rem; }
+          .btn-apt-text { display: none !important; }
+          .btn-sm-mobile { padding: 0.4rem 0.65rem !important; }
+          .nav-cms-btn-text { display: none !important; }
         }
       `}</style>
 
     </header>
   );
 };
+

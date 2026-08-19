@@ -176,7 +176,10 @@ export const EmergencyPage = () => {
 
             {/* Right Column: ER Capabilities & Map */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
+
+              {/* ER Capabilities */}
               <div className="card card-lift" style={{ padding: '1.75rem' }}>
+
                 <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <ShieldAlert size={20} style={{ color: '#dc2626' }} /> Emergency Unit Features
                 </h3>
@@ -195,6 +198,19 @@ export const EmergencyPage = () => {
                   </li>
                 </ul>
               </div>
+
+              {/* Triage Priority Rating Widget */}
+              <div className="card" style={{ padding: '1.5rem', backgroundColor: '#fef2f2', border: '1px solid #fca5a5' }}>
+                <div style={{ fontWeight: 800, color: '#991b1b', fontSize: '0.95rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <AlertTriangle size={16} /> Triage Priority Classification
+                </div>
+                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', fontSize: '0.78rem' }}>
+                  <span style={{ backgroundColor: '#ef4444', color: '#fff', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: 700 }}>Category 1 (Red): Resuscitation Now</span>
+                  <span style={{ backgroundColor: '#f59e0b', color: '#fff', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: 700 }}>Category 2 (Yellow): Emergency Within 10m</span>
+                  <span style={{ backgroundColor: '#10b981', color: '#fff', padding: '0.2rem 0.5rem', borderRadius: '4px', fontWeight: 700 }}>Category 3 (Green): Urgent Care Within 30m</span>
+                </div>
+              </div>
+
 
               {/* Location Card */}
               <div className="card card-lift" style={{ padding: '1.5rem' }}>
@@ -222,3 +238,5 @@ export const EmergencyPage = () => {
     </div>
   );
 };
+
+

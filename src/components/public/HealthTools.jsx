@@ -3,7 +3,7 @@ import { useApp } from '../../context/AppContext';
 import { Activity, Heart, Baby, Calendar, ArrowRight, ShieldCheck } from 'lucide-react';
 
 export const HealthTools = () => {
-  const [activeTab, setActiveTab] = useState('bmi'); // 'bmi' | 'pregnancy'
+  const [activeTab, setActiveTab] = useState('bmi'); // 'bmi' | 'pregnancy' | 'hydration'
 
   // BMI State
   const [heightCm, setHeightCm] = useState(170);
@@ -11,6 +11,9 @@ export const HealthTools = () => {
 
   // Pregnancy Due Date State
   const [lmpDate, setLmpDate] = useState('');
+
+  // Hydration State
+  const [userWeight, setUserWeight] = useState(65);
 
   const calculateBmi = () => {
     if (!heightCm || !weightKg) return null;
@@ -43,11 +46,9 @@ export const HealthTools = () => {
     const lmp = new Date(lmpDate);
     if (isNaN(lmp.getTime())) return null;
 
-    // Naegele's rule: LMP + 280 days
     const edd = new Date(lmp.getTime() + 280 * 24 * 60 * 60 * 1000);
     const eddStr = edd.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
-    // Gestational age in weeks
     const diffDays = Math.floor((new Date() - lmp) / (1000 * 60 * 60 * 24));
     const weeks = Math.floor(diffDays / 7);
 
@@ -58,8 +59,16 @@ export const HealthTools = () => {
     return { eddStr, weeks, trimester };
   };
 
+  const calculateHydration = () => {
+    const liters = (userWeight * 0.035).toFixed(1);
+    const glasses = Math.round(liters * 4);
+    const calories = Math.round(userWeight * 30);
+    return { liters, glasses, calories };
+  };
+
   const bmiResult = calculateBmi();
   const eddResult = calculateEdd();
+  const hydResult = calculateHydration();
 
   const scrollToAppointment = () => {
     const el = document.getElementById('appointment');
@@ -71,9 +80,9 @@ export const HealthTools = () => {
       <div className="container">
         <div className="section-header">
           <span className="pill-label">Interactive Wellness Tools</span>
-          <h2 className="section-title">Health & Pregnancy Calculators</h2>
+          <h2 className="section-title">Health & Wellness Calculators</h2>
           <p className="section-subtitle">
-            Free patient wellness tools to estimate your Body Mass Index (BMI) or calculate expected delivery dates for expectant mothers.
+            Free patient wellness tools to estimate Body Mass Index (BMI), pregnancy due dates, or daily hydration & maintenance targets.
           </p>
 
           <div className="health-tools-tabs" style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
@@ -81,7 +90,7 @@ export const HealthTools = () => {
               onClick={() => setActiveTab('bmi')}
               className={`btn ${activeTab === 'bmi' ? 'btn-primary' : 'btn-outline'}`}
             >
-              <Activity size={18} /> BMI & Wellness
+              <Activity size={18} /> BMI Assessment
             </button>
             <button
               onClick={() => setActiveTab('pregnancy')}
@@ -89,13 +98,18 @@ export const HealthTools = () => {
             >
               <Baby size={18} /> Pregnancy Due Date
             </button>
+            <button
+              onClick={() => setActiveTab('hydration')}
+              className={`btn ${activeTab === 'hydration' ? 'btn-primary' : 'btn-outline'}`}
+            >
+              <Heart size={18} /> Hydration & Calorie Target
+            </button>
           </div>
         </div>
 
         <div style={{ maxWidth: '780px', margin: '0 auto' }}>
-          {activeTab === 'bmi' ? (
+          {activeTab === 'bmi' && (
             <div className="card animate-fade-in health-tool-card" style={{ padding: '2rem' }}>
-
               <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '1.25rem' }}>
                 Body Mass Index (BMI) Assessment
               </h3>
@@ -141,7 +155,9 @@ export const HealthTools = () => {
                 </div>
               )}
             </div>
-          ) : (
+          )}
+
+          {activeTab === 'pregnancy' && (
             <div className="card animate-fade-in" style={{ padding: '2.25rem' }}>
               <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '1.25rem' }}>
                 Pregnancy Due Date (EDD) Estimator
@@ -178,6 +194,48 @@ export const HealthTools = () => {
               )}
             </div>
           )}
+
+          {activeTab === 'hydration' && (
+            <div className="card animate-fade-in" style={{ padding: '2.25rem' }}>
+              <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '1.25rem' }}>
+                Daily Hydration & Calorie Target Estimator
+              </h3>
+
+              <div className="form-group" style={{ maxWidth: '440px', margin: '0 auto 1.5rem auto' }}>
+                <label>Body Weight: {userWeight} kg</label>
+                <input
+                  type="range"
+                  min="35"
+                  max="150"
+                  value={userWeight}
+                  onChange={(e) => setUserWeight(Number(e.target.value))}
+                  style={{ width: '100%', accentColor: 'var(--accent-teal)' }}
+                />
+              </div>
+
+              <div className="grid-2" style={{ gap: '1.25rem' }}>
+                <div style={{ backgroundColor: 'var(--bg-light)', padding: '1.5rem', borderRadius: 'var(--radius-md)', textAlign: 'center', border: '1px solid var(--border-light)' }}>
+                  <div style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--accent-cyan)' }}>RECOMMENDED DAILY WATER</div>
+                  <div style={{ fontSize: '2.4rem', fontWeight: 800, color: 'var(--primary-navy)', margin: '6px 0' }}>
+                    {hydResult.liters} Liters
+                  </div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                    (~{hydResult.glasses} standard glasses/day)
+                  </div>
+                </div>
+
+                <div style={{ backgroundColor: 'var(--bg-light)', padding: '1.5rem', borderRadius: 'var(--radius-md)', textAlign: 'center', border: '1px solid var(--border-light)' }}>
+                  <div style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--accent-teal)' }}>ESTIMATED CALORIE TARGET</div>
+                  <div style={{ fontSize: '2.4rem', fontWeight: 800, color: 'var(--primary-navy)', margin: '6px 0' }}>
+                    ~{hydResult.calories} kcal
+                  </div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                    Daily energy maintenance baseline
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <style>{`
@@ -189,4 +247,5 @@ export const HealthTools = () => {
     </section>
   );
 };
+
 

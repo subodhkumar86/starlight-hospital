@@ -42,8 +42,9 @@ export const CmsAppointments = () => {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div className="cms-page-container">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
+
         <div>
           <h2 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--primary-navy)' }}>
             Patient Appointments Manager
