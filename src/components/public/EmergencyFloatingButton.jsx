@@ -10,14 +10,14 @@ export const EmergencyFloatingButton = () => {
   if (viewMode === 'cms') return null;
 
   return (
-    <div style={{ position: 'fixed', bottom: '1.75rem', left: '1.75rem', zIndex: 8900 }}>
+    <div className="emergency-floating-wrapper" style={{ position: 'fixed', bottom: '1.75rem', left: '1.75rem', zIndex: 8900 }}>
       {open ? (
         <div className="glass-dark animate-fade-in" style={{ padding: '1.25rem', borderRadius: 'var(--radius-lg)', maxWidth: '300px', boxShadow: 'var(--shadow-xl)', border: '1px solid var(--accent-teal)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.85rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 800, fontSize: '0.95rem', color: 'var(--accent-teal-light)' }}>
               <ShieldAlert size={18} /> 24/7 Emergency Triage
             </div>
-            <button onClick={() => setOpen(false)} style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer' }}>
+            <button onClick={() => setOpen(false)} style={{ background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: '0.25rem' }}>
               <X size={16} />
             </button>
           </div>
@@ -54,21 +54,31 @@ export const EmergencyFloatingButton = () => {
             color: '#ffffff',
             border: 'none',
             borderRadius: 'var(--radius-full)',
-            padding: '0.75rem 1.25rem',
+            padding: '0.7rem 1.1rem',
             fontWeight: 800,
-            fontSize: '0.88rem',
+            fontSize: '0.85rem',
             cursor: 'pointer',
             boxShadow: '0 8px 24px rgba(239, 68, 68, 0.45)',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.5rem',
+            gap: '0.4rem',
             transition: 'all 0.25s ease'
           }}
           className="animate-pulse"
         >
-          <PhoneCall size={18} /> Emergency 24/7
+          <PhoneCall size={16} /> Emergency 24/7
         </button>
       )}
+
+      <style>{`
+        @media (max-width: 576px) {
+          .emergency-floating-wrapper {
+            bottom: 1rem !important;
+            left: 1rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };
+

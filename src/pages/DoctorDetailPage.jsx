@@ -21,46 +21,57 @@ export const DoctorDetailPage = () => {
           <ArrowLeft size={16} /> Back to Specialists Directory
         </button>
 
-        <div className="card" style={{ padding: '2.5rem' }}>
-          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap' }}>
+        <div className="card doctor-detail-card" style={{ padding: '2.5rem' }}>
+          <div className="doctor-header-flex" style={{ display: 'flex', gap: '1.75rem', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap' }}>
             <img
               src={doctor.image}
               alt={doctor.name}
-              style={{ width: '130px', height: '130px', borderRadius: '50%', objectFit: 'cover', border: '4px solid var(--accent-teal)' }}
+              style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', border: '4px solid var(--accent-teal)', flexShrink: 0 }}
             />
             <div>
               <span className="pill-label">{doctor.department}</span>
-              <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--primary-navy)' }}>{doctor.name}</h1>
-              <div style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--accent-cyan)', marginTop: '4px' }}>{doctor.title}</div>
-              <div style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginTop: '6px' }}>{doctor.qualifications} ({doctor.experience} experience)</div>
+              <h1 className="doctor-detail-name" style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--primary-navy)', lineHeight: 1.2 }}>{doctor.name}</h1>
+              <div style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--accent-cyan)', marginTop: '4px' }}>{doctor.title}</div>
+              <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginTop: '6px' }}>{doctor.qualifications} ({doctor.experience} experience)</div>
             </div>
           </div>
 
           <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '1.5rem', marginBottom: '2rem' }}>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--primary-navy)', marginBottom: '0.75rem' }}>
+            <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--primary-navy)', marginBottom: '0.75rem' }}>
               Professional Biography
             </h3>
-            <p style={{ fontSize: '1.05rem', color: 'var(--text-muted)', lineHeight: 1.8 }}>
+            <p style={{ fontSize: '0.98rem', color: 'var(--text-muted)', lineHeight: 1.7 }}>
               {doctor.bio}
             </p>
           </div>
 
-          <div style={{ backgroundColor: 'var(--bg-light)', padding: '1.5rem', borderRadius: 'var(--radius-lg)', display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2.5rem', border: '1px solid var(--border-light)' }}>
-            <Clock size={24} style={{ color: 'var(--accent-teal)' }} />
+          <div style={{ backgroundColor: 'var(--bg-light)', padding: '1.25rem', borderRadius: 'var(--radius-lg)', display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem', border: '1px solid var(--border-light)' }}>
+            <Clock size={22} style={{ color: 'var(--accent-teal)', flexShrink: 0 }} />
             <div>
-              <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Clinic Consultation Schedule</div>
-              <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--primary-navy)' }}>{doctor.availability}</div>
+              <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Clinic Consultation Schedule</div>
+              <div style={{ fontSize: '0.98rem', fontWeight: 700, color: 'var(--primary-navy)' }}>{doctor.availability}</div>
             </div>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+          <div className="doctor-action-btns" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
             <button onClick={() => navigate('/doctors')} className="btn btn-outline">Back to Roster</button>
-            <Link to="/appointment" className="btn btn-primary btn-lg">
-              <Calendar size={20} /> Book Appointment with {doctor.name.split(' ')[1] || 'Doctor'}
+            <Link to="/appointment" className="btn btn-primary btn-lg" style={{ flexGrow: 1, justifyContent: 'center' }}>
+              <Calendar size={18} /> Book Appointment with {doctor.name.split(' ')[1] || 'Doctor'}
             </Link>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 576px) {
+          .doctor-detail-card { padding: 1.25rem !important; }
+          .doctor-header-flex { flex-direction: column !important; text-align: center !important; gap: 1rem !important; }
+          .doctor-detail-name { font-size: 1.5rem !important; }
+          .doctor-action-btns { flex-direction: column !important; }
+          .doctor-action-btns button, .doctor-action-btns a { width: 100% !important; justify-content: center !important; }
+        }
+      `}</style>
     </div>
   );
 };
+

@@ -79,7 +79,7 @@ export const Hero = () => {
               </div>
             </div>
 
-            <h1 style={{
+            <h1 className="hero-title" style={{
               fontSize: '3.25rem',
               fontWeight: 800,
               color: '#ffffff',
@@ -99,16 +99,16 @@ export const Hero = () => {
               At <strong>Starlight Hospital</strong> (*{hospitalInfo.tagline}*), we provide comprehensive medical consultations, obstetrics, paediatrics, surgical operations, and 24/7 emergency response for families across Lagos.
             </p>
 
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '3rem' }}>
+            <div className="hero-cta-buttons" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '3rem' }}>
               <button
                 onClick={() => scrollToSection('appointment')}
-                className="btn btn-primary btn-lg"
+                className="btn btn-primary btn-lg hero-btn"
               >
                 <Calendar size={20} /> Book Appointment
               </button>
               <a
                 href={`tel:${hospitalInfo.emergencyPhone}`}
-                className="btn btn-lg"
+                className="btn btn-lg hero-btn"
                 style={{ backgroundColor: 'rgba(255, 255, 255, 0.12)', color: '#ffffff', border: '1px solid rgba(255, 255, 255, 0.3)' }}
               >
                 <PhoneCall size={20} style={{ color: 'var(--accent-teal-light)' }} /> Call Hotline ({hospitalInfo.emergencyPhone})
@@ -116,51 +116,51 @@ export const Hero = () => {
             </div>
 
             {/* Micro Highlights */}
-            <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', borderTop: '1px solid rgba(255, 255, 255, 0.15)', paddingTop: '1.75rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                <CheckCircle size={20} style={{ color: 'var(--accent-teal-light)' }} />
-                <span style={{ fontSize: '0.9rem', color: '#e2e8f0' }}>24/7 Emergency Care</span>
+            <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap', borderTop: '1px solid rgba(255, 255, 255, 0.15)', paddingTop: '1.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <CheckCircle size={18} style={{ color: 'var(--accent-teal-light)' }} />
+                <span style={{ fontSize: '0.86rem', color: '#e2e8f0' }}>24/7 Emergency Care</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                <CheckCircle size={20} style={{ color: 'var(--accent-teal-light)' }} />
-                <span style={{ fontSize: '0.9rem', color: '#e2e8f0' }}>Specialist Doctors</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <CheckCircle size={18} style={{ color: 'var(--accent-teal-light)' }} />
+                <span style={{ fontSize: '0.86rem', color: '#e2e8f0' }}>Specialist Doctors</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                <CheckCircle size={20} style={{ color: 'var(--accent-teal-light)' }} />
-                <span style={{ fontSize: '0.9rem', color: '#e2e8f0' }}>Modern Diagnostics</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <CheckCircle size={18} style={{ color: 'var(--accent-teal-light)' }} />
+                <span style={{ fontSize: '0.86rem', color: '#e2e8f0' }}>Modern Diagnostics</span>
               </div>
             </div>
           </div>
 
           {/* Right Column Glass Cards Showcase */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <div className="glass-dark animate-float" style={{ padding: '1.75rem', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-xl)' }}>
+            <div className="glass-dark animate-float" style={{ padding: '1.5rem', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-xl)' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <div style={{ width: '42px', height: '42px', borderRadius: 'var(--radius-md)', backgroundColor: 'rgba(13, 148, 136, 0.25)', color: 'var(--accent-teal-light)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: '42px', height: '42px', borderRadius: 'var(--radius-md)', backgroundColor: 'rgba(13, 148, 136, 0.25)', color: 'var(--accent-teal-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     <ShieldAlert size={22} />
                   </div>
                   <div>
-                    <h3 style={{ fontSize: '1.15rem', color: '#ffffff' }}>24/7 Emergency Services</h3>
-                    <p style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Always ready for urgent care</p>
+                    <h3 style={{ fontSize: '1.1rem', color: '#ffffff' }}>24/7 Emergency Services</h3>
+                    <p style={{ fontSize: '0.78rem', color: '#94a3b8' }}>Always ready for urgent care</p>
                   </div>
                 </div>
                 <span className="badge badge-confirmed" style={{ fontSize: '0.75rem' }}>Active 24/7</span>
               </div>
-              <p style={{ fontSize: '0.88rem', color: '#cbd5e1', lineHeight: 1.5 }}>
+              <p style={{ fontSize: '0.86rem', color: '#cbd5e1', lineHeight: 1.5 }}>
                 Fully staffed surgical, maternity, and trauma resuscitation units equipped with emergency ambulances and on-call consultants.
               </p>
             </div>
 
             {/* Quick Stats Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.25rem' }}>
-              <div className="glass-dark" style={{ padding: '1.5rem', borderRadius: 'var(--radius-lg)', textAlign: 'center' }}>
-                <div style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--accent-cyan-light)', lineHeight: 1 }}>15+</div>
-                <div style={{ fontSize: '0.85rem', color: '#cbd5e1', marginTop: '4px' }}>Specialist Doctors</div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
+              <div className="glass-dark" style={{ padding: '1.25rem', borderRadius: 'var(--radius-lg)', textAlign: 'center' }}>
+                <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--accent-cyan-light)', lineHeight: 1 }}>15+</div>
+                <div style={{ fontSize: '0.8rem', color: '#cbd5e1', marginTop: '4px' }}>Specialist Doctors</div>
               </div>
-              <div className="glass-dark" style={{ padding: '1.5rem', borderRadius: 'var(--radius-lg)', textAlign: 'center' }}>
-                <div style={{ fontSize: '2.25rem', fontWeight: 800, color: 'var(--accent-teal-light)', lineHeight: 1 }}>10,000+</div>
-                <div style={{ fontSize: '0.85rem', color: '#cbd5e1', marginTop: '4px' }}>Patients Served</div>
+              <div className="glass-dark" style={{ padding: '1.25rem', borderRadius: 'var(--radius-lg)', textAlign: 'center' }}>
+                <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--accent-teal-light)', lineHeight: 1 }}>10,000+</div>
+                <div style={{ fontSize: '0.8rem', color: '#cbd5e1', marginTop: '4px' }}>Patients Served</div>
               </div>
             </div>
           </div>
@@ -169,9 +169,18 @@ export const Hero = () => {
 
       <style>{`
         @media (max-width: 992px) {
-          .hero-grid { grid-template-columns: 1fr !important; }
+          .hero-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+        }
+        @media (max-width: 768px) {
+          .hero-title { font-size: 2.1rem !important; }
+        }
+        @media (max-width: 576px) {
+          .hero-title { font-size: 1.85rem !important; }
+          .hero-cta-buttons { flex-direction: column !important; }
+          .hero-btn { width: 100% !important; justify-content: center !important; }
         }
       `}</style>
     </section>
+
   );
 };

@@ -126,8 +126,19 @@ export const CmsDoctors = () => {
 
       {/* Doctor Modal Form */}
       {showModal && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 9500, backgroundColor: 'rgba(11, 21, 40, 0.75)', backdropFilter: 'blur(6px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem' }}>
-          <div className="animate-fade-in" style={{ backgroundColor: '#ffffff', borderRadius: 'var(--radius-lg)', width: '100%', maxWidth: '640px', padding: '2rem', position: 'relative' }}>
+        <div style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 9500,
+          backgroundColor: 'rgba(11, 21, 40, 0.75)',
+          backdropFilter: 'blur(6px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '0.85rem'
+        }}>
+          <div className="animate-fade-in" style={{ backgroundColor: '#ffffff', borderRadius: 'var(--radius-lg)', width: '100%', maxWidth: '640px', padding: '1.5rem', maxHeight: '92vh', overflowY: 'auto', position: 'relative' }}>
+
             <button onClick={() => setShowModal(false)} style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: '#f1f5f9', border: 'none', borderRadius: '50%', width: '36px', height: '36px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <X size={20} />
             </button>

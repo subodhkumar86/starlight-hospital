@@ -235,6 +235,13 @@ export const CmsDashboard = () => {
           </div>
         </div>
       </div>
+      <style>{`
+        @media (max-width: 640px) {
+          .cms-quick-actions-bar { flex-direction: column !important; align-items: stretch !important; }
+          .cms-quick-actions-bar button { width: 100% !important; justify-content: center !important; }
+        }
+      `}</style>
     </div>
   );
 };
+

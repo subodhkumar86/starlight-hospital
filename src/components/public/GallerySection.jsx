@@ -156,56 +156,67 @@ export const GallerySection = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '1.5rem'
+          padding: '0.85rem'
         }}>
-          <div className="animate-fade-in" style={{ backgroundColor: 'var(--bg-card)', color: 'var(--text-main)', borderRadius: 'var(--radius-lg)', width: '100%', maxWidth: '720px', maxHeight: '90vh', overflowY: 'auto', border: '1px solid var(--border-light)', position: 'relative' }}>
+          <div className="animate-fade-in gallery-modal-content" style={{ backgroundColor: 'var(--bg-card)', color: 'var(--text-main)', borderRadius: 'var(--radius-lg)', width: '100%', maxWidth: '720px', maxHeight: '92vh', overflowY: 'auto', border: '1px solid var(--border-light)', position: 'relative' }}>
             <button
               onClick={() => setActiveItem(null)}
-              style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', zIndex: 10, background: 'rgba(0, 0, 0, 0.6)', color: '#ffffff', border: 'none', borderRadius: '50%', width: '36px', height: '36px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              style={{ position: 'absolute', top: '1rem', right: '1rem', zIndex: 10, background: 'rgba(0, 0, 0, 0.6)', color: '#ffffff', border: 'none', borderRadius: '50%', width: '36px', height: '36px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
             >
               <X size={20} />
             </button>
 
-            <div style={{ width: '100%', height: '320px', position: 'relative' }}>
+            <div className="gallery-modal-img-wrapper" style={{ width: '100%', height: '280px', position: 'relative' }}>
               <img src={activeItem.image} alt={activeItem.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(11, 21, 40, 0.9), transparent)' }}></div>
-              <div style={{ position: 'absolute', bottom: '1.5rem', left: '2rem', right: '2rem', color: '#ffffff' }}>
+              <div style={{ position: 'absolute', bottom: '1.25rem', left: '1.25rem', right: '1.25rem', color: '#ffffff' }}>
                 <span className="badge badge-tag" style={{ backgroundColor: 'var(--accent-teal)', color: '#ffffff', border: 'none', marginBottom: '0.4rem' }}>
                   {activeItem.category}
                 </span>
-                <h2 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#ffffff' }}>{activeItem.title}</h2>
+                <h2 className="gallery-modal-title" style={{ fontSize: '1.65rem', fontWeight: 800, color: '#ffffff' }}>{activeItem.title}</h2>
               </div>
             </div>
 
-            <div style={{ padding: '2rem' }}>
-              <p style={{ color: 'var(--text-muted)', fontSize: '1.02rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+            <div className="gallery-modal-body" style={{ padding: '1.75rem' }}>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.96rem', lineHeight: 1.6, marginBottom: '1.25rem' }}>
                 {activeItem.desc}
               </p>
 
-              <div style={{ backgroundColor: 'var(--bg-light)', padding: '1.5rem', borderRadius: 'var(--radius-md)', marginBottom: '2rem', border: '1px solid var(--border-light)' }}>
-                <h4 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.85rem', color: 'var(--primary-navy)' }}>
+              <div style={{ backgroundColor: 'var(--bg-light)', padding: '1.25rem', borderRadius: 'var(--radius-md)', marginBottom: '1.5rem', border: '1px solid var(--border-light)' }}>
+                <h4 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '0.75rem', color: 'var(--primary-navy)' }}>
                   Unit Capabilities & Equipment Specs:
                 </h4>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
                   {activeItem.details.map((detail, idx) => (
-                    <div key={idx} style={{ display: 'flex', gap: '0.65rem', alignItems: 'center', fontSize: '0.92rem' }}>
-                      <CheckCircle2 size={16} style={{ color: 'var(--accent-teal)', flexShrink: 0 }} />
+                    <div key={idx} style={{ display: 'flex', gap: '0.55rem', alignItems: 'center', fontSize: '0.88rem' }}>
+                      <CheckCircle2 size={15} style={{ color: 'var(--accent-teal)', flexShrink: 0 }} />
                       <span>{detail}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
+              <div className="gallery-modal-btns" style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', flexWrap: 'wrap' }}>
                 <button onClick={() => setActiveItem(null)} className="btn btn-outline">Close Preview</button>
                 <button onClick={scrollToAppointment} className="btn btn-primary">
-                  <Calendar size={18} /> Book Visit for {activeItem.title}
+                  <Calendar size={16} /> Book Visit
                 </button>
               </div>
             </div>
           </div>
         </div>
       )}
+
+      <style>{`
+        @media (max-width: 576px) {
+          .gallery-modal-img-wrapper { height: 200px !important; }
+          .gallery-modal-title { font-size: 1.35rem !important; }
+          .gallery-modal-body { padding: 1.15rem !important; }
+          .gallery-modal-btns { flex-direction: column !important; }
+          .gallery-modal-btns button { width: 100% !important; justify-content: center !important; }
+        }
+      `}</style>
     </section>
   );
 };
+

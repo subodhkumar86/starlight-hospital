@@ -23,46 +23,47 @@ export const Footer = () => {
   };
 
   return (
-    <footer style={{ backgroundColor: 'var(--primary-navy)', color: '#ffffff', paddingTop: '4rem', paddingBottom: '2rem' }}>
+    <footer style={{ backgroundColor: 'var(--primary-navy)', color: '#ffffff', paddingTop: '3rem', paddingBottom: '2rem' }}>
       <div className="container">
         {/* Top Emergency CTA Strip */}
-        <div style={{
+        <div className="footer-emergency-strip" style={{
           background: 'linear-gradient(135deg, var(--accent-teal), var(--accent-cyan))',
           borderRadius: 'var(--radius-lg)',
-          padding: '2rem 2.5rem',
+          padding: '1.5rem 1.75rem',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
           flexWrap: 'wrap',
-          gap: '1.5rem',
-          marginBottom: '4rem',
+          gap: '1.25rem',
+          marginBottom: '3rem',
           boxShadow: 'var(--shadow-xl)'
         }}>
           <div>
-            <span style={{ fontSize: '0.8rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.85)' }}>
+            <span style={{ fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.85)' }}>
               Need Immediate Medical Assistance?
             </span>
-            <h3 style={{ fontSize: '1.75rem', fontWeight: 800, color: '#ffffff', marginTop: '0.2rem' }}>
+            <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#ffffff', marginTop: '0.2rem', lineHeight: 1.25 }}>
               Our Emergency Triage Team is Available 24 Hours A Day
             </h3>
           </div>
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', width: '100%', maxWidth: 'auto' }} className="footer-cta-buttons">
             <a
               href={`tel:${hospitalInfo.emergencyPhone}`}
               className="btn"
-              style={{ backgroundColor: '#ffffff', color: 'var(--primary-navy)', fontWeight: 700 }}
+              style={{ backgroundColor: '#ffffff', color: 'var(--primary-navy)', fontWeight: 700, flex: '1 1 auto' }}
             >
               <Phone size={18} style={{ color: 'var(--accent-teal)' }} /> Call Emergency Hotline
             </a>
             <button
               onClick={() => handleLinkClick('/appointment')}
               className="btn"
-              style={{ backgroundColor: 'rgba(0, 0, 0, 0.25)', color: '#ffffff', border: '1px solid rgba(255, 255, 255, 0.4)' }}
+              style={{ backgroundColor: 'rgba(0, 0, 0, 0.25)', color: '#ffffff', border: '1px solid rgba(255, 255, 255, 0.4)', flex: '1 1 auto' }}
             >
               Book Online Appointment
             </button>
           </div>
         </div>
+
 
         {/* 4 Column Footer Content */}
         <div className="grid-4" style={{ marginBottom: '3.5rem', gap: '2.5rem' }}>
@@ -102,40 +103,46 @@ export const Footer = () => {
 
           {/* Col 2: Quick Links */}
           <div>
-            <h4 style={{ color: '#ffffff', fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.25rem' }}>Quick Links</h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.9rem', color: 'var(--text-light)' }}>
+            <h4 style={{ color: '#ffffff', fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.25rem' }}>Patient & Hospital Services</h4>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.9rem', color: 'var(--text-light)' }}>
               <li>
-                <button onClick={() => handleLinkClick('/about')} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <ChevronRight size={14} style={{ color: 'var(--accent-teal)' }} /> About Starlight Hospital
+                <button onClick={() => handleLinkClick('/emergency')} style={{ background: 'none', border: 'none', color: '#fca5a5', fontWeight: 700, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <ChevronRight size={14} style={{ color: '#ef4444' }} /> 24/7 Emergency Triage
                 </button>
               </li>
               <li>
-                <button onClick={() => handleLinkClick('/services')} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <ChevronRight size={14} style={{ color: 'var(--accent-teal)' }} /> Medical Specialties & Units
+                <button onClick={() => handleLinkClick('/hmo-insurance')} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <ChevronRight size={14} style={{ color: 'var(--accent-teal)' }} /> HMO & Insurance Clearance
                 </button>
               </li>
               <li>
-                <button onClick={() => handleLinkClick('/doctors')} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <ChevronRight size={14} style={{ color: 'var(--accent-teal)' }} /> Our Specialist Doctors
+                <button onClick={() => handleLinkClick('/patient-portal')} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <ChevronRight size={14} style={{ color: 'var(--accent-teal)' }} /> Patient Portal & Slip Lookup
                 </button>
               </li>
               <li>
-                <button onClick={() => handleLinkClick('/health-information')} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <ChevronRight size={14} style={{ color: 'var(--accent-teal)' }} /> Health Articles & News
+                <button onClick={() => handleLinkClick('/testimonials')} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <ChevronRight size={14} style={{ color: 'var(--accent-teal)' }} /> Patient Recovery Stories
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleLinkClick('/careers')} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <ChevronRight size={14} style={{ color: 'var(--accent-teal)' }} /> Careers & Vacancies
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleLinkClick('/faq')} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <ChevronRight size={14} style={{ color: 'var(--accent-teal)' }} /> FAQ & Knowledge Base
                 </button>
               </li>
               <li>
                 <button onClick={() => handleLinkClick('/appointment')} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <ChevronRight size={14} style={{ color: 'var(--accent-teal)' }} /> Schedule Consultation
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleLinkClick('/contact')} style={{ background: 'none', border: 'none', color: 'inherit', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <ChevronRight size={14} style={{ color: 'var(--accent-teal)' }} /> Contact & Location
+                  <ChevronRight size={14} style={{ color: 'var(--accent-teal)' }} /> Book Consultation
                 </button>
               </li>
             </ul>
           </div>
+
 
           {/* Col 3: Contact Details */}
           <div>

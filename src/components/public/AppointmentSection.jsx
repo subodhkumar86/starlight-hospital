@@ -51,7 +51,8 @@ export const AppointmentSection = () => {
         </div>
 
         <div style={{ maxWidth: '820px', margin: '0 auto' }}>
-          <div className="card" style={{ padding: '2.5rem', boxShadow: 'var(--shadow-xl)' }}>
+          <div className="card appointment-form-card" style={{ padding: '2.5rem', boxShadow: 'var(--shadow-xl)' }}>
+
             {submittedApt ? (
               <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
                 <div style={{
@@ -227,6 +228,12 @@ export const AppointmentSection = () => {
           </div>
         </div>
       </div>
+      <style>{`
+        @media (max-width: 640px) {
+          .appointment-form-card { padding: 1.25rem !important; }
+        }
+      `}</style>
     </section>
   );
 };
+

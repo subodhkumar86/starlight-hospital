@@ -76,25 +76,26 @@ export const HealthTools = () => {
             Free patient wellness tools to estimate your Body Mass Index (BMI) or calculate expected delivery dates for expectant mothers.
           </p>
 
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '1.5rem' }}>
+          <div className="health-tools-tabs" style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
             <button
               onClick={() => setActiveTab('bmi')}
               className={`btn ${activeTab === 'bmi' ? 'btn-primary' : 'btn-outline'}`}
             >
-              <Activity size={18} /> BMI & Wellness Calculator
+              <Activity size={18} /> BMI & Wellness
             </button>
             <button
               onClick={() => setActiveTab('pregnancy')}
               className={`btn ${activeTab === 'pregnancy' ? 'btn-primary' : 'btn-outline'}`}
             >
-              <Baby size={18} /> Pregnancy Due Date Estimator
+              <Baby size={18} /> Pregnancy Due Date
             </button>
           </div>
         </div>
 
         <div style={{ maxWidth: '780px', margin: '0 auto' }}>
           {activeTab === 'bmi' ? (
-            <div className="card animate-fade-in" style={{ padding: '2.25rem' }}>
+            <div className="card animate-fade-in health-tool-card" style={{ padding: '2rem' }}>
+
               <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '1.25rem' }}>
                 Body Mass Index (BMI) Assessment
               </h3>
@@ -179,6 +180,13 @@ export const HealthTools = () => {
           )}
         </div>
       </div>
+      <style>{`
+        @media (max-width: 640px) {
+          .health-tool-card { padding: 1.25rem !important; }
+          .health-tools-tabs button { width: 100% !important; justify-content: center !important; }
+        }
+      `}</style>
     </section>
   );
 };
+

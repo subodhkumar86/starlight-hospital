@@ -99,7 +99,7 @@ export const CostCalculator = () => {
             <h4 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.85rem', color: 'var(--primary-navy)' }}>
               Optional Add-on Diagnostics & Wards:
             </h4>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
+            <div className="calc-addons-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
               {addOns.map((addon) => {
                 const isChecked = selectedAddOns.includes(addon.id);
                 return (
@@ -135,11 +135,11 @@ export const CostCalculator = () => {
 
           {/* Right Column Total Estimate & HMO */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <div className="card" style={{ padding: '2rem', background: 'linear-gradient(135deg, var(--primary-navy), #1e293b)', color: '#ffffff', boxShadow: 'var(--shadow-xl)' }}>
+            <div className="card" style={{ padding: '1.75rem', background: 'linear-gradient(135deg, var(--primary-navy), #1e293b)', color: '#ffffff', boxShadow: 'var(--shadow-xl)' }}>
               <div style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--accent-teal-light)', letterSpacing: '0.1em' }}>
                 ESTIMATED PACKAGE TOTAL
               </div>
-              <div style={{ fontSize: '2.75rem', fontWeight: 800, color: '#ffffff', margin: '0.5rem 0 1rem 0', lineHeight: 1 }}>
+              <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#ffffff', margin: '0.5rem 0 1rem 0', lineHeight: 1 }}>
                 ₦{calculateTotal().toLocaleString()}
               </div>
 
@@ -181,7 +181,11 @@ export const CostCalculator = () => {
         @media (max-width: 992px) {
           .calc-grid { grid-template-columns: 1fr !important; }
         }
+        @media (max-width: 640px) {
+          .calc-addons-grid { grid-template-columns: 1fr !important; }
+        }
       `}</style>
     </section>
+
   );
 };

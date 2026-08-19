@@ -22,6 +22,12 @@ import { HealthInformationPage } from './pages/HealthInformationPage';
 import { HealthArticlePage } from './pages/HealthArticlePage';
 import { ServiceDetailPage } from './pages/ServiceDetailPage';
 import { DoctorDetailPage } from './pages/DoctorDetailPage';
+import { EmergencyPage } from './pages/EmergencyPage';
+import { InsuranceHmoPage } from './pages/InsuranceHmoPage';
+import { PatientPortalPage } from './pages/PatientPortalPage';
+import { PatientTestimonialsPage } from './pages/PatientTestimonialsPage';
+import { CareersPage } from './pages/CareersPage';
+import { FaqPage } from './pages/FaqPage';
 
 // CMS Components
 import { CmsHeader } from './components/cms/CmsHeader';
@@ -75,8 +81,15 @@ const MainLayout = () => {
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/privacy-policy" element={<PrivacyPage />} />
           <Route path="/terms-disclaimer" element={<TermsPage />} />
+          <Route path="/emergency" element={<EmergencyPage />} />
+          <Route path="/hmo-insurance" element={<InsuranceHmoPage />} />
+          <Route path="/patient-portal" element={<PatientPortalPage />} />
+          <Route path="/testimonials" element={<PatientTestimonialsPage />} />
+          <Route path="/careers" element={<CareersPage />} />
+          <Route path="/faq" element={<FaqPage />} />
         </Routes>
       </main>
+
       <Footer />
       <EmergencyFloatingButton />
     </div>

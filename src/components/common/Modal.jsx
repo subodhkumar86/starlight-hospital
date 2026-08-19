@@ -46,11 +46,11 @@ export const Modal = () => {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '1.5rem',
+      padding: '0.85rem',
       overflowY: 'auto'
     }}>
       <div
-        className="animate-fade-in"
+        className="animate-fade-in responsive-modal-box"
         style={{
           backgroundColor: 'var(--bg-card)',
           color: 'var(--text-main)',
@@ -58,12 +58,13 @@ export const Modal = () => {
           boxShadow: 'var(--shadow-xl)',
           width: '100%',
           maxWidth: type === 'newsReader' ? '760px' : type === 'adminLogin' ? '440px' : '650px',
-          maxHeight: '90vh',
+          maxHeight: '92vh',
           overflowY: 'auto',
           position: 'relative',
           border: '1px solid var(--border-light)'
         }}
       >
+
         {/* Modal Header Close Button */}
         <button
           onClick={closeModal}

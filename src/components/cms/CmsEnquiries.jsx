@@ -98,8 +98,9 @@ export const CmsEnquiries = () => {
       </div>
 
       {/* Enquiries Data Table */}
-      <div className="card" style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.92rem' }}>
+      <div className="card table-responsive">
+        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.92rem', minWidth: '600px' }}>
+
           <thead>
             <tr style={{ backgroundColor: 'var(--bg-light)', borderBottom: '1px solid var(--border-light)', color: 'var(--primary-navy)' }}>
               <th style={{ padding: '1rem 1.25rem', fontWeight: 700 }}>Sender</th>

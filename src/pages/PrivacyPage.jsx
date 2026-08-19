@@ -3,19 +3,20 @@ import { ShieldCheck, Lock, FileText } from 'lucide-react';
 
 export const PrivacyPage = () => {
   return (
-    <div style={{ paddingTop: '3rem', paddingBottom: '5rem' }}>
+    <div style={{ paddingTop: '2rem', paddingBottom: '4rem' }}>
       <div className="container" style={{ maxWidth: '850px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <span className="pill-label">Patient Confidentiality</span>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '0.5rem' }}>
+          <h1 style={{ fontSize: 'clamp(1.6rem, 5vw, 2.5rem)', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '0.5rem', lineHeight: 1.2 }}>
             Starlight Hospital Privacy Policy
           </h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem' }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.98rem' }}>
             How we protect patient health data, medical records, and online confidentiality in accordance with medical ethics.
           </p>
         </div>
 
-        <div className="card" style={{ padding: '2.5rem', lineHeight: 1.8, color: 'var(--text-main)' }}>
+        <div className="card privacy-card" style={{ padding: '2rem', lineHeight: 1.8, color: 'var(--text-main)' }}>
+
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem', color: 'var(--accent-teal)' }}>
             <ShieldCheck size={28} />
             <h2 style={{ fontSize: '1.4rem', fontWeight: 700 }}>1. Patient Data Protection Principles</h2>
