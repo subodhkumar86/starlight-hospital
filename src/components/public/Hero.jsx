@@ -75,9 +75,27 @@ export const Hero = () => {
                 color: '#34d399'
               }}>
                 <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#34d399' }} className="animate-pulse-dot"></span>
-                <span>24/7 Triage Active</span>
+                <span>24/7 ER Triage Active</span>
+              </div>
+
+              {/* ER Wait Time Badge */}
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                backgroundColor: 'rgba(239, 68, 68, 0.15)',
+                border: '1px solid rgba(239, 68, 68, 0.3)',
+                padding: '0.4rem 0.85rem',
+                borderRadius: 'var(--radius-full)',
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                color: '#fca5a5'
+              }}>
+                <Clock size={14} />
+                <span>ER Wait Time: &lt; 12 Mins</span>
               </div>
             </div>
+
 
             <h1 className="hero-title" style={{
               fontSize: '3.25rem',

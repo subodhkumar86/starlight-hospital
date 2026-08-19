@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useApp } from '../../context/AppContext';
-import { Activity, Heart, Baby, Calendar, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Activity, Heart, Baby, Calendar, ShieldCheck, Syringe } from 'lucide-react';
 
 export const HealthTools = () => {
-  const [activeTab, setActiveTab] = useState('bmi'); // 'bmi' | 'pregnancy' | 'hydration'
+  const [activeTab, setActiveTab] = useState('bmi'); // 'bmi' | 'pregnancy' | 'hydration' | 'immunization'
 
   // BMI State
   const [heightCm, setHeightCm] = useState(170);
@@ -14,6 +13,9 @@ export const HealthTools = () => {
 
   // Hydration State
   const [userWeight, setUserWeight] = useState(65);
+
+  // Child Immunization DOB State
+  const [childDob, setChildDob] = useState('');
 
   const calculateBmi = () => {
     if (!heightCm || !weightKg) return null;
@@ -66,9 +68,30 @@ export const HealthTools = () => {
     return { liters, glasses, calories };
   };
 
+  const calculateVaccines = () => {
+    if (!childDob) return null;
+    const dob = new Date(childDob);
+    if (isNaN(dob.getTime())) return null;
+
+    const addDays = (days) => {
+      const d = new Date(dob.getTime() + days * 24 * 60 * 60 * 1000);
+      return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    };
+
+    return [
+      { age: 'At Birth', date: addDays(0), vaccines: 'BCG, OPV 0, Hepatitis B (HBV 0)' },
+      { age: '6 Weeks', date: addDays(42), vaccines: 'Penta 1, OPV 1, PCV 1, Rota 1' },
+      { age: '10 Weeks', date: addDays(70), vaccines: 'Penta 2, OPV 2, PCV 2, Rota 2' },
+      { age: '14 Weeks', date: addDays(98), vaccines: 'Penta 3, OPV 3, PCV 3, IPV 1' },
+      { age: '9 Months', date: addDays(270), vaccines: 'Measles 1, Yellow Fever, Vitamin A 1' },
+      { age: '15 Months', date: addDays(450), vaccines: 'Measles 2 (MMR), Meningococcal' }
+    ];
+  };
+
   const bmiResult = calculateBmi();
   const eddResult = calculateEdd();
   const hydResult = calculateHydration();
+  const vaccineSchedule = calculateVaccines();
 
   const scrollToAppointment = () => {
     const el = document.getElementById('appointment');
@@ -80,9 +103,9 @@ export const HealthTools = () => {
       <div className="container">
         <div className="section-header">
           <span className="pill-label">Interactive Wellness Tools</span>
-          <h2 className="section-title">Health & Wellness Calculators</h2>
+          <h2 className="section-title">Health & Clinical Calculators</h2>
           <p className="section-subtitle">
-            Free patient wellness tools to estimate Body Mass Index (BMI), pregnancy due dates, or daily hydration & maintenance targets.
+            Free patient wellness tools to estimate Body Mass Index (BMI), pregnancy due dates, hydration targets, or infant immunization schedules.
           </p>
 
           <div className="health-tools-tabs" style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
@@ -102,10 +125,17 @@ export const HealthTools = () => {
               onClick={() => setActiveTab('hydration')}
               className={`btn ${activeTab === 'hydration' ? 'btn-primary' : 'btn-outline'}`}
             >
-              <Heart size={18} /> Hydration & Calorie Target
+              <Heart size={18} /> Hydration & Calories
+            </button>
+            <button
+              onClick={() => setActiveTab('immunization')}
+              className={`btn ${activeTab === 'immunization' ? 'btn-primary' : 'btn-outline'}`}
+            >
+              <Syringe size={18} /> Infant Immunization
             </button>
           </div>
         </div>
+
 
         <div style={{ maxWidth: '780px', margin: '0 auto' }}>
           {activeTab === 'bmi' && (
@@ -236,8 +266,62 @@ export const HealthTools = () => {
               </div>
             </div>
           )}
+
+          {activeTab === 'immunization' && (
+            <div className="card animate-fade-in" style={{ padding: '2.25rem' }}>
+              <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '1.25rem' }}>
+                Infant Immunization Schedule Tracker
+              </h3>
+
+              <div className="form-group" style={{ maxWidth: '400px', margin: '0 auto 1.5rem auto' }}>
+                <label>Child's Date of Birth (DOB)</label>
+                <input
+                  type="date"
+                  className="form-control"
+                  value={childDob}
+                  onChange={(e) => setChildDob(e.target.value)}
+                />
+              </div>
+
+              {vaccineSchedule ? (
+                <div>
+                  <div className="table-responsive" style={{ marginBottom: '1.5rem' }}>
+                    <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.88rem', textAlign: 'left' }}>
+                      <thead>
+                        <tr style={{ backgroundColor: 'var(--bg-light)', borderBottom: '2px solid var(--border-light)', color: 'var(--primary-navy)' }}>
+                          <th style={{ padding: '0.75rem' }}>Age Milestone</th>
+                          <th style={{ padding: '0.75rem' }}>Expected Date</th>
+                          <th style={{ padding: '0.75rem' }}>Required Vaccines</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {vaccineSchedule.map((v, i) => (
+                          <tr key={i} style={{ borderBottom: '1px solid var(--border-light)' }}>
+                            <td style={{ padding: '0.75rem', fontWeight: 700, color: 'var(--accent-teal)' }}>{v.age}</td>
+                            <td style={{ padding: '0.75rem', fontWeight: 600 }}>{v.date}</td>
+                            <td style={{ padding: '0.75rem' }}>{v.vaccines}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div style={{ textAlign: 'center' }}>
+                    <button onClick={scrollToAppointment} className="btn btn-primary">
+                      <Calendar size={18} /> Book Immunization Appointment
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div style={{ textAlign: 'center', padding: '1.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                  Please select your child's birth date above to generate an official WHO immunization schedule timeline.
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
+
       <style>{`
         @media (max-width: 640px) {
           .health-tool-card { padding: 1.25rem !important; }

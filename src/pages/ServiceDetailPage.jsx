@@ -59,6 +59,30 @@ export const ServiceDetailPage = () => {
             </div>
           </div>
 
+          {/* 3-Step Patient Journey Walkthrough */}
+          <div style={{ padding: '1.5rem', borderRadius: 'var(--radius-lg)', backgroundColor: '#ffffff', border: '1px solid var(--border-light)', marginBottom: '2rem' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--primary-navy)', marginBottom: '1rem' }}>
+              Procedural Care Journey Breakdown
+            </h3>
+            <div className="grid-3" style={{ gap: '1rem' }}>
+              <div style={{ padding: '1rem', backgroundColor: 'var(--bg-light)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-light)' }}>
+                <div style={{ fontWeight: 800, color: 'var(--accent-teal)', fontSize: '0.85rem', marginBottom: '4px' }}>STEP 1</div>
+                <div style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--primary-navy)' }}>Initial Triage & Assessment</div>
+                <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '4px' }}>Vitals check and specialist physician consultation.</div>
+              </div>
+              <div style={{ padding: '1rem', backgroundColor: 'var(--bg-light)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-light)' }}>
+                <div style={{ fontWeight: 800, color: 'var(--accent-teal)', fontSize: '0.85rem', marginBottom: '4px' }}>STEP 2</div>
+                <div style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--primary-navy)' }}>Diagnostic & Lab Evaluation</div>
+                <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '4px' }}>Targeted ultrasound, blood work, or ECG diagnostics.</div>
+              </div>
+              <div style={{ padding: '1rem', backgroundColor: 'var(--bg-light)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-light)' }}>
+                <div style={{ fontWeight: 800, color: 'var(--accent-teal)', fontSize: '0.85rem', marginBottom: '4px' }}>STEP 3</div>
+                <div style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--primary-navy)' }}>Targeted Treatment & Follow-up</div>
+                <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '4px' }}>Personalized therapy, outpatient care, or ward admission.</div>
+              </div>
+            </div>
+          </div>
+
           <div className="service-action-btns" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', borderTop: '1px solid var(--border-light)', paddingTop: '1.5rem' }}>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
               Starlight Hospital Triage • Jajo Phase 2, Ikorodu
@@ -67,6 +91,7 @@ export const ServiceDetailPage = () => {
               <Calendar size={18} /> Schedule Consultation
             </Link>
           </div>
+
         </div>
       </div>
 

@@ -22,6 +22,7 @@ export const CostCalculator = () => {
 
   const [selectedPkgId, setSelectedPkgId] = useState('gen');
   const [selectedAddOns, setSelectedAddOns] = useState([]);
+  const [hmoDiscountPercent, setHmoDiscountPercent] = useState(0);
 
   const currentPkg = basePackages.find((p) => p.id === selectedPkgId) || basePackages[0];
 
@@ -31,7 +32,7 @@ export const CostCalculator = () => {
     );
   };
 
-  const calculateTotal = () => {
+  const calculateSubtotal = () => {
     let total = currentPkg.price;
     selectedAddOns.forEach((addonId) => {
       const item = addOns.find((a) => a.id === addonId);
@@ -40,6 +41,10 @@ export const CostCalculator = () => {
     return total;
   };
 
+  const subtotal = calculateSubtotal();
+  const discountAmount = Math.round(subtotal * (hmoDiscountPercent / 100));
+  const netTotal = subtotal - discountAmount;
+
   const hmoPartners = ['Reliance HMO', 'Hygeia HMO', 'AXA Mansard Health', 'Total Health Trust', 'Anchor HMO'];
 
   const scrollToAppointment = () => {
@@ -47,14 +52,18 @@ export const CostCalculator = () => {
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handlePrintEstimate = () => {
+    window.print();
+  };
+
   return (
     <section className="section-padding" style={{ backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)' }}>
       <div className="container">
         <div className="section-header">
           <span className="pill-label">Transparent Pricing</span>
-          <h2 className="section-title">Medical Care Cost Estimator & HMO Partners</h2>
+          <h2 className="section-title">Medical Care Cost Estimator & HMO Coverage</h2>
           <p className="section-subtitle">
-            Calculate estimated healthcare packages for your family in Ikorodu. Starlight Hospital also accepts leading HMO health plans.
+            Calculate estimated healthcare packages for your family in Ikorodu with real-time HMO co-payment coverage adjustments.
           </p>
         </div>
 
@@ -99,7 +108,7 @@ export const CostCalculator = () => {
             <h4 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '0.85rem', color: 'var(--primary-navy)' }}>
               Optional Add-on Diagnostics & Wards:
             </h4>
-            <div className="calc-addons-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem' }}>
+            <div className="calc-addons-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '0.75rem', marginBottom: '1.5rem' }}>
               {addOns.map((addon) => {
                 const isChecked = selectedAddOns.includes(addon.id);
                 return (
@@ -131,29 +140,69 @@ export const CostCalculator = () => {
                 );
               })}
             </div>
+
+            {/* HMO Co-Pay Adjustment Slider */}
+            <div style={{ backgroundColor: 'var(--bg-light)', padding: '1.25rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-light)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                <label style={{ fontWeight: 700, fontSize: '0.88rem', color: 'var(--primary-navy)' }}>
+                  HMO Insurance Co-Payment Coverage: {hmoDiscountPercent}%
+                </label>
+                <span style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--accent-teal)' }}>
+                  -₦{discountAmount.toLocaleString()} Savings
+                </span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="100"
+                step="10"
+                value={hmoDiscountPercent}
+                onChange={(e) => setHmoDiscountPercent(Number(e.target.value))}
+                style={{ width: '100%', accentColor: 'var(--accent-teal)' }}
+              />
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+                Slide to estimate co-payment discount for covered HMO plans (Reliance, Hygeia, AXA, etc.).
+              </div>
+            </div>
           </div>
 
           {/* Right Column Total Estimate & HMO */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             <div className="card" style={{ padding: '1.75rem', background: 'linear-gradient(135deg, var(--primary-navy), #1e293b)', color: '#ffffff', boxShadow: 'var(--shadow-xl)' }}>
               <div style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--accent-teal-light)', letterSpacing: '0.1em' }}>
-                ESTIMATED PACKAGE TOTAL
+                NET ESTIMATED OUT-OF-POCKET
               </div>
-              <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#ffffff', margin: '0.5rem 0 1rem 0', lineHeight: 1 }}>
-                ₦{calculateTotal().toLocaleString()}
+              <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#ffffff', margin: '0.5rem 0 0.5rem 0', lineHeight: 1 }}>
+                ₦{netTotal.toLocaleString()}
               </div>
+
+              {hmoDiscountPercent > 0 && (
+                <div style={{ fontSize: '0.82rem', color: 'var(--accent-cyan-light)', marginBottom: '1rem', fontWeight: 600 }}>
+                  Gross Package: ₦{subtotal.toLocaleString()} (-{hmoDiscountPercent}% HMO Coverage)
+                </div>
+              )}
 
               <div style={{ fontSize: '0.85rem', color: '#cbd5e1', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                Estimated total includes selected consultation package and add-ons. Final billing is subject to individual triage prescription.
+                Estimated total includes selected consultation package, add-ons, and HMO co-pay coverage discount.
               </div>
 
-              <button
-                onClick={scrollToAppointment}
-                className="btn btn-primary"
-                style={{ width: '100%', padding: '0.9rem' }}
-              >
-                <Calendar size={18} /> Schedule Consultation For Package
-              </button>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <button
+                  onClick={scrollToAppointment}
+                  className="btn btn-primary"
+                  style={{ width: '100%', padding: '0.9rem' }}
+                >
+                  <Calendar size={18} /> Schedule Consultation For Package
+                </button>
+
+                <button
+                  onClick={handlePrintEstimate}
+                  className="btn btn-outline"
+                  style={{ width: '100%', borderColor: 'rgba(255, 255, 255, 0.3)', color: '#ffffff', padding: '0.65rem' }}
+                >
+                  <DollarSign size={16} /> Print Official Estimate Slip
+                </button>
+              </div>
             </div>
 
             {/* HMO Partners Box */}
@@ -176,6 +225,7 @@ export const CostCalculator = () => {
           </div>
         </div>
       </div>
+
 
       <style>{`
         @media (max-width: 992px) {
